@@ -4,8 +4,8 @@ LABEL maintainer="Sebastian König <skoenig@viosys.com>"
 
 # install basics and php extensions
 RUN apt-get update && \
-    apt-get upgrade -y
-RUN apt-get install -y \
+    apt-get upgrade -y && \
+    apt-get install -y \
       ca-certificates \
       libfreetype6 \
       libfreetype6-dev \
@@ -25,6 +25,8 @@ RUN apt-get install -y \
       build-essential \
       coreutils \
       autoconf \
+      nginx \
+      supervisor \
       automake && \
     docker-php-ext-configure gd \
       --with-gd \
@@ -63,10 +65,7 @@ RUN cd /tmp \
 
 
 # install nginx
-RUN apt-get install -y \
-      nginx \
-      supervisor && \
-    ln -sf /dev/stdout /var/log/nginx/access.log && \
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \
     rm -rf /var/lib/nginx/tmp && \
     ln -sf /tmp /var/lib/nginx/tmp && \
