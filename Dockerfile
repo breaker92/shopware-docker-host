@@ -10,6 +10,8 @@ RUN apt-get install -y \
       libfreetype6 \
       libfreetype6-dev \
       git \
+      ant \
+      sudo \
       libicu-dev \
       libjpeg62-turbo \
       libjpeg62-turbo-dev \
