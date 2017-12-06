@@ -53,7 +53,11 @@ RUN apt-get update && \
     apt-get remove build-essential -y && \
     update-ca-certificates && \
     ln -s /usr/local/bin/php /usr/bin/php && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    mkdir /var/www/.composer && \
+    mkdir /var/www/.cache && \
+    chown www-data:www-data /var/www/.composer && \
+    chown www-data:www-data /var/www/.cache
 
 # install ioncube
 RUN cd /tmp \
